@@ -1,5 +1,5 @@
-import tensorrt as trt
 import pycuda.autoinit
+import tensorrt as trt
 import pycuda.driver as cuda
 import numpy as np 
 from dataset import MNIST
@@ -11,7 +11,7 @@ dataset=MNIST()
 BATCH_SIZE=1
 
 # 读取trt模型文件
-f=open('vit.trt','rb')
+f=open('mlp.trt','rb')
 model_content=f.read()
 
 # trt运行时
@@ -46,4 +46,5 @@ cuda.memcpy_dtoh_async(output,output_addr,stream)   # 3、从cuda拷贝回cpu内
 stream.synchronize()
 
 # 打印CPU中的预测结果
-print(output)
+print('正确label:',label)
+print('预测label:',output.argmax(-1))

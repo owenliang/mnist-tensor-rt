@@ -1,14 +1,14 @@
 from dataset import MNIST
 import matplotlib.pyplot as plt 
 import torch 
-from vit import ViT
+from mlp import MLP
 import torch.nn.functional as F
 
 DEVICE='cuda' if torch.cuda.is_available() else 'cpu'   # 设备
 
 dataset=MNIST() # 数据集
 
-model=ViT().to(DEVICE) # 模型
+model=MLP().to(DEVICE) # 模型
 model.load_state_dict(torch.load('model.pth'))
 
 model.eval()    # 预测模式

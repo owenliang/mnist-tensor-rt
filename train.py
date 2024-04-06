@@ -1,6 +1,6 @@
 import torch 
 from dataset import MNIST
-from vit import ViT
+from mlp import MLP
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 import os 
@@ -9,7 +9,7 @@ DEVICE='cuda' if torch.cuda.is_available() else 'cpu'   # 设备
 
 dataset=MNIST() # 数据集
 
-model=ViT().to(DEVICE) # 模型
+model=MLP().to(DEVICE) # 模型
 
 try:    # 加载模型
     model.load_state_dict(torch.load('model.pth'))
